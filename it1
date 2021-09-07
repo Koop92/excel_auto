@@ -1,32 +1,40 @@
-# Import PROJECT TRACKER X with openpyxl
-from openpyxl import load_workbook
-
-#Print's welcome message
-print("Hello, welcome to Liam's BoosterBOT :)")
-
-#Asks user the input information and stores it to a variable
-order_date = input('Enter order date:')
-lead_time = input('Enter lead time:')
-requested_delivery = input('Enter requested delivery date:')
-order_status = 'LIVE'
-sop = input('Enter SOP:')
-project_num= input('Enter project number, if blank enter "-":')
-customer = input('Enter customer:')
-project_name = input('Enter project reference:')
-value = input('Enter value:')
-serial_num = input('Enter serial number:')
-model_range = input('Enter product range:')
-model = input('Enter model:')
-flow_rate = input('Enter flow rate:')
-pressure = input('Enter pressure:')
-drawing = input('Drawing? y/n :')
-
-
-
-wb = load_workbook(r'X:\Booster Department\PROJECT TRACKER X.xlsx')
+wb = load_workbook(r'C:\Users\liamc\Documents\PROJECT TRACKER X.xlsx')
 ws = wb.active
 ws1 = wb["PROJECT TRACKER"]
 ws1['A605'] = order_date
+ws1['B605'] = lead_time
+ws1['C605'] = requested_delivery
+ws1['F605'] = order_status
+ws1['G605'] = sop
+ws1['H605'] = project_num
+ws1['I605'] = customer
 
+wb.save(r'C:\Users\liamc\Documents\PROJECT TRACKER X.xlsx')
+wb.close()
 
-wb.save('X:\Booster Department\PROJECT TRACKER X.xlsx')
+wb1 = load_workbook(r'C:\Users\liamc\Documents\509BUILD&TEST.xlsx')
+ws3 = wb1.active
+ws2 = wb1["BUILD SHEET"]
+
+print('Auto generating build sheet')
+ws2['C2'] = customer
+ws2['I2'] = project_name
+ws2['A4'] = order_date
+ws2['D4'] = input("Enter today's date:")
+ws2['G4'] = requested_delivery
+ws2['J4'] = serial_num
+ws2['M4'] = sop
+ws2['N2'] = value
+
+if 'inv/3'.lower().upper() in model:
+    ws2['C7'] = '400V 3PH'
+if 'inv/1'.lower().upper() in model:
+    motor = input('Set is 1PH, single phase or three phase motors? enter 1 for single phase or 2 for three phase:')
+    if '1' in motor:
+        ws2['C7'] = '230V 1PH'
+    if '2' in motor:
+        ws2['C7'] = '230V 3PH'
+
+print('This is still under develpoment, finish it Liam, thank you for using BoosterBOT')
+
+wb1.save(r'C:\Users\liamc\Documents\509BUILD&TEST.xlsx')
