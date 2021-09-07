@@ -1,0 +1,32 @@
+# Import PROJECT TRACKER X with openpyxl
+from openpyxl import load_workbook
+
+#Print's welcome message
+print("Hello, welcome to Liam's BoosterBOT :)")
+
+#Asks user the input information and stores it to a variable
+order_date = input('Enter order date:')
+lead_time = input('Enter lead time:')
+requested_delivery = input('Enter requested delivery date:')
+order_status = 'LIVE'
+sop = input('Enter SOP:')
+project_num= input('Enter project number, if blank enter "-":')
+customer = input('Enter customer:')
+project_name = input('Enter project reference:')
+value = input('Enter value:')
+serial_num = input('Enter serial number:')
+model_range = input('Enter product range:')
+model = input('Enter model:')
+flow_rate = input('Enter flow rate:')
+pressure = input('Enter pressure:')
+drawing = input('Drawing? y/n :')
+
+
+
+wb = load_workbook(r'X:\Booster Department\PROJECT TRACKER X.xlsx')
+ws = wb.active
+ws1 = wb["PROJECT TRACKER"]
+ws1['A605'] = order_date
+
+
+wb.save('X:\Booster Department\PROJECT TRACKER X.xlsx')
